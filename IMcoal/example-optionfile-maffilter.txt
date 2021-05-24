@@ -1,0 +1,14 @@
+input.file=minimusbicknellNC_046221.maf
+input.file.compression=none
+input.format=Maf
+output.log=minimusbicknell.maf.maffilter.log
+maf.filter=Subset(species=(Catbic_NC_046221,Catmin_NC_046221), strict=yes,keep=no,remove_duplicates=yes),\
+SelectOrphans(species=(Catmin_NC_046221, Catbic_NC_046221),strict=yes,remove_duplicates=yes),\
+XFullGap(species=(Catbic_NC_046221,Catmin_NC_046221)),\
+MinBlockLength(min_length=1000),\
+QualFilter(species=(Catbic_NC_046221,Catmin_NC_046221),window.size=10,window.step=1,min.qual=0.8,file=seq_trash_qual.maf.gz,compression=gzip),\
+Concatenate(minimum_size=10000000),\
+RemoveEmptySequences(unresolved_as_gaps=yes),\
+XFullGap(species=(Catbic_NC_046221,Catmin_NC_046221)),\
+Output(file=filter-minimusbicknellNC_046221.maf,compression=none,mask=no),\
+

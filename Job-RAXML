@@ -1,0 +1,17 @@
+#!/bin/bash
+#SBATCH -p serial_requeue
+#SBATCH --mem 120000
+#SBATCH -n 30
+#SBATCH -N 1
+#SBATCH -t 2-00:00
+#SBATCH -o UCE-raxml%j.out
+#SBATCH -e UCE-raxml%j.err
+#SBATCH -J UCE-raxml
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=ftermignoni@fas.harvard.edu
+
+module load gcc/7.1.0-fasrc01 openmpi/2.1.0-fasrc02 RAxML/8.2.11-fasrc02
+
+raxml -p 12345 -q output_partitions.txt -m GTRGAMMA -n T30 -s output.phy
+#with bootstrap an branch lenght
+#raxml -f a -p 12345 -x 12345 -# 100 -q output_partitions.txt -m GTRGAMMA -n T20 -s output.phy
